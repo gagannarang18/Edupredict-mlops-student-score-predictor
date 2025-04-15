@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Indicator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <div class="login">
+            <div class="header">
+                <h1>📊 Student Exam Performance Predictor</h1>
+                <p>Fill in the details to predict math performance</p>
+            </div>
+            
+            <form action="{{ url_for('predict_datapoint') }}" method="post">
+                <div class="form-grid">
+                    <!-- Left Column -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-venus-mars"></i> Gender
+                            </label>
+                            <select class="form-control" name="gender" required>
+                                <option selected disabled value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-users"></i> Ethnicity
+                            </label>
+                            <select class="form-control" name="ethnicity" required>
+                                <option selected disabled value="">Select Ethnicity</option>
+                                <option value="group A">Group A</option>
+                                <option value="group B">Group B</option>
+                                <option value="group C">Group C</option>
+                                <option value="group D">Group D</option>
+                                <option value="group E">Group E</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-graduation-cap"></i> Parent Education
+                            </label>
+                            <select class="form-control" name="parental_level_of_education" required>
+                                <option selected disabled value="">Select Education Level</option>
+                                <option value="associate's degree">Associate's degree</option>
+                                <option value="bachelor's degree">Bachelor's degree</option>
+                                <option value="high school">High school</option>
+                                <option value="master's degree">Master's degree</option>
+                                <option value="some college">Some college</option>
+                                <option value="some high school">Some high school</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-utensils"></i> Lunch Type
+                            </label>
+                            <select class="form-control" name="lunch" required>
+                                <option selected disabled value="">Select Lunch Type</option>
+                                <option value="free/reduced">Free/Reduced</option>
+                                <option value="standard">Standard</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-book-open"></i> Test Preparation
+                            </label>
+                            <select class="form-control" name="test_preparation_course" required>
+                                <option selected disabled value="">Select Preparation</option>
+                                <option value="none">None</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-pencil-alt"></i> Writing Score
+                            </label>
+                            <input class="form-control" type="number" name="writing_score" 
+                                   placeholder="Enter score (0-100)" min="0" max="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-book-reader"></i> Reading Score
+                            </label>
+                            <input class="form-control" type="number" name="reading_score" 
+                                   placeholder="Enter score (0-100)" min="0" max="100" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn-primary" type="submit">
+                        <i class="fas fa-calculator"></i> Predict Math Score
+                    </button>
+                </div>
+            </form>
+
+            {% if results %}
+            <div class="result-box">
+                <div class="result-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2>Predicted Math Score: <span class="highlight">{{ results }}</span></h2>
+                <p class="result-note">Score range: 0-100 points</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

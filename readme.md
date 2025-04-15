@@ -2,6 +2,8 @@
 
 **End-to-end ML pipeline predicting student math scores (0-100) with 88.03% accuracy**
 
+![mlops-student-score-predictor Demo](templates\image.png) 
+
 ```yaml
 # 🚀 Deployment
 API Endpoint: http://127.0.0.1:5000/predictdata

@@ -1,3 +1,8 @@
+# 📚 Student Math Score Predictor
+
+**End-to-end ML pipeline predicting student math scores (0-100) with 88.03% accuracy**
+
+```yaml
 # 🚀 Deployment
 API Endpoint: http://127.0.0.1:5000/predictdata
 Run: python application.py
@@ -14,8 +19,8 @@ K-Neighbors:            0.7838
 Decision Tree:          0.7545
 
 # ⚙️ Installation
-1. git clone https://github.com/gagannarang18/mlops-student-score-predictor.git
-2. cd student-score-predictor
+1. git clone https://github.com/yourusername/student-performance-predictor.git
+2. cd student-performance-predictor
 3. pip install -r requirements.txt
 4. python application.py
 
@@ -37,4 +42,3 @@ curl -X POST http://127.0.0.1:5000/predictdata \
 - Pandas/Numpy (Data)
 - Scikit-learn/CatBoost/XGBoost (ML)
 - Flask (API)
--HTML,CSS(UI)

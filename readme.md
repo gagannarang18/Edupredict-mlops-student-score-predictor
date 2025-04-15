@@ -2,7 +2,7 @@
 
 **End-to-end ML pipeline predicting student math scores (0-100) with 88.03% accuracy**
 
-![mlops-student-score-predictor Demo](templates\image.png) 
+![mlops-student-score-predictor Demo](https://github.com/gagannarang18/mlops-student-score-predictor/blob/main/templates/image.png) 
 
 ```yaml
 # 🚀 Deployment

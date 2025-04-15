@@ -160,3 +160,24 @@ body {
         font-size: 1rem;
     }
 }
+
+
+/* Add this to your CSS */
+.score-input {
+    appearance: none; /* Removes default browser styling */
+    -moz-appearance: textfield; /* Firefox */
+    padding: 14px 20px !important; /* Match select dropdown padding */
+}
+
+/* Hide number input arrows */
+.score-input::-webkit-outer-spin-button,
+.score-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ensure all form controls have consistent height */
+.form-control {
+    min-height: 52px; /* Match the height of select elements */
+    box-sizing: border-box;
+}

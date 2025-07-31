@@ -1,54 +1,105 @@
-/* Updated CSS */
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* Modern, Professional CSS with Animations and Enhanced UX */
+:root {
+    --primary-color: #4a6bff;
+    --secondary-color: #6c5ce7;
+    --dark-color: #2c3e50;
+    --light-color: #f8f9fa;
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+    --warning-color: #f39c12;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    margin: 0;
+    padding: 0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--dark-color);
+    line-height: 1.6;
 }
 
 .container {
     width: 100%;
-    max-width: 1000px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-    margin: 20px;
+    max-width: 1100px;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    box-shadow: var(--box-shadow);
+    margin: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
 .header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 2.5rem;
+    position: relative;
 }
 
 .header h1 {
-    color: #2c3e50;
+    color: var(--dark-color);
     font-size: 2.5rem;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
     font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .header p {
-    color: #7f8c8d;
+    color: #64748b;
     font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.header .logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(74, 107, 255, 0.3);
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-bottom: 30px;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .form-column {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.5rem;
 }
 
 .form-group {
@@ -56,128 +107,303 @@ body {
 }
 
 .form-label {
-    color: #34495e;
-    font-weight: 600;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: block;
+    color: #475569;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
 }
 
 .form-control {
     width: 100%;
-    padding: 14px 20px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius);
     font-size: 1rem;
-    transition: all 0.3s ease;
-    background: #f8f9fa;
+    transition: var(--transition);
+    background: white;
+    color: var(--dark-color);
+    appearance: none;
 }
 
 .form-control:focus {
-    border-color: #6c5ce7;
-    background: white;
-    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.1);
+}
+
+select.form-control {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234B5563' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 16px 12px;
+    padding-right: 2.5rem;
 }
 
 .btn-primary {
-    background: #6c5ce7;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 16px 30px;
+    padding: 1rem 2rem;
     border: none;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     width: 100%;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 6px rgba(74, 107, 255, 0.2);
 }
 
 .btn-primary:hover {
-    background: #5b4bc4;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+    box-shadow: 0 7px 14px rgba(74, 107, 255, 0.25);
+    opacity: 0.95;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.result-container {
+    margin-top: 2rem;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .result-box {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 25px;
-    margin-top: 30px;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
     text-align: center;
-    border: 2px solid #e0e0e0;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.result-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
 .result-icon {
-    font-size: 2.5rem;
-    color: #6c5ce7;
-    margin-bottom: 15px;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    animation: bounce 1s infinite alternate;
 }
 
 .result-box h2 {
-    color: #2c3e50;
+    color: var(--dark-color);
     font-size: 1.8rem;
-    margin: 10px 0;
+    margin: 0.5rem 0;
 }
 
 .highlight {
-    color: #6c5ce7;
+    color: var(--primary-color);
     font-weight: 700;
+    font-size: 2.2rem;
+    display: inline-block;
+    margin: 0.5rem 0;
 }
 
 .result-note {
-    color: #7f8c8d;
-    font-size: 0.9rem;
-    margin-top: 10px;
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-top: 1rem;
 }
 
+/* Flash messages */
+.flash-messages {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    max-width: 400px;
+    width: 100%;
+}
+
+.flash {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: 500;
+    box-shadow: var(--box-shadow);
+    animation: slideIn 0.3s ease-out forwards;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.flash::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.flash.success {
+    background: var(--success-color);
+}
+
+.flash.error {
+    background: var(--error-color);
+}
+
+.flash.warning {
+    background: var(--warning-color);
+}
+
+.close-flash {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.close-flash:hover {
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+/* Loading spinner */
+.loading-spinner {
+    display: none;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
     .form-grid {
         grid-template-columns: 1fr;
     }
     
     .container {
-        padding: 25px;
-        margin: 15px;
+        padding: 1.5rem;
+        margin: 1rem;
     }
     
     .header h1 {
         font-size: 2rem;
     }
+    
+    .btn-primary {
+        padding: 0.875rem 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
-    .form-control {
-        padding: 12px 15px;
+    .header h1 {
+        font-size: 1.8rem;
     }
     
-    .btn-primary {
-        padding: 14px 20px;
-        font-size: 1rem;
+    .form-control {
+        padding: 0.75rem 1rem;
+    }
+    
+    .result-box {
+        padding: 1.5rem;
+    }
+    
+    .highlight {
+        font-size: 1.8rem;
     }
 }
 
-
-/* Add this to your CSS */
-.score-input {
-    appearance: none; /* Removes default browser styling */
-    -moz-appearance: textfield; /* Firefox */
-    padding: 14px 20px !important; /* Match select dropdown padding */
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 0.5rem;
+    cursor: pointer;
 }
 
-/* Hide number input arrows */
-.score-input::-webkit-outer-spin-button,
-.score-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.tooltip-icon {
+    width: 18px;
+    height: 18px;
+    background: #94a3b8;
+    color: white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
 }
 
-/* Ensure all form controls have consistent height */
-.form-control {
-    min-height: 52px; /* Match the height of select elements */
-    box-sizing: border-box;
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.5rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.85rem;
+    font-weight: normal;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Score range indicator */
+.score-range {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
 }

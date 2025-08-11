@@ -21,10 +21,11 @@ K-Neighbors:            0.7838
 Decision Tree:          0.7545
 
 # ⚙️ Installation
-1. git clone https://github.com/yourusername/student-performance-predictor.git
-2. cd student-performance-predictor
+1. git clone https://github.com/gagannarang18/Edupredict-mlops-student-score-predictor.git
+2. cd Edupredict-mlops-student-score-predictor
 3. pip install -r requirements.txt
-4. python application.py
+4. streamlit run app.py
+5. python flask_app.py(Either of 4 or 5 )
 
 # 📡 API Example
 curl -X POST http://127.0.0.1:5000/predictdata \
@@ -44,3 +45,4 @@ curl -X POST http://127.0.0.1:5000/predictdata \
 - Pandas/Numpy (Data)
 - Scikit-learn/CatBoost/XGBoost (ML)
 - Flask (API)
+- Streamlit 

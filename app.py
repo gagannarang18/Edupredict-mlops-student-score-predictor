@@ -205,6 +205,6 @@ st.markdown("---")
 st.markdown("""
     <div style="text-align: center; color: #666; font-size: 0.9rem;">
         EduPredict Math Score Predictor • Powered by Streamlit • 
-        <a href="https://github.com/yourusername/edupredict" target="_blank">GitHub</a>
+        <a href="https://github.com/gagannarang18/mlops-student-score-predictor" target="_blank">GitHub</a>
     </div>
 """, unsafe_allow_html=True)

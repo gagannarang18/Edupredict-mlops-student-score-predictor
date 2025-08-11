@@ -44,15 +44,16 @@ st.markdown("""
             border: 1px solid var(--gray-300, #ccc);
         }
         .success-prediction {
-            font-size: 1.5rem !important;
-            text-align: center;
-            padding: 1.5rem;
-            background-color: var(--success-background, #e8f5e9);
-            border-radius: 10px;
-            border-left: 5px solid var(--success-color, #4caf50);
-            margin-top: 1rem;
-            color: var(--text-color);
-        }
+    font-size: 1.5rem !important;
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--success-background, #e8f5e9);
+    border-radius: 10px;
+    border-left: 5px solid var(--success-color, #4caf50);
+    margin-top: 1rem;
+    color: var(--text-color);  /* <-- add this line to fix text color */
+}
+
         .header-image {
             text-align: center;
             margin-bottom: 1.5rem;

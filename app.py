@@ -10,41 +10,48 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- Custom CSS for Styling ---
+# --- Theme-aware Custom CSS for Styling ---
 st.markdown("""
     <style>
+        /* Use Streamlit CSS variables to adapt light/dark mode */
         .main {
-            background-color: #f8f9fa;
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
         .stForm {
-            background-color: white;
+            background-color: var(--secondary-background-color);
             border-radius: 10px;
             padding: 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: var(--text-color);
         }
         .stButton>button {
-            background-color: #4a6fa5;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--white, #fff);
             border-radius: 8px;
             padding: 0.5rem 1rem;
             width: 100%;
             transition: all 0.3s ease;
         }
         .stButton>button:hover {
-            background-color: #3a5a8a;
+            filter: brightness(0.9);
             transform: translateY(-2px);
         }
         .stNumberInput input, .stSelectbox select {
             border-radius: 8px !important;
+            color: var(--text-color);
+            background-color: var(--secondary-background-color);
+            border: 1px solid var(--gray-300, #ccc);
         }
         .success-prediction {
             font-size: 1.5rem !important;
             text-align: center;
             padding: 1.5rem;
-            background-color: #e8f5e9;
+            background-color: var(--success-background, #e8f5e9);
             border-radius: 10px;
-            border-left: 5px solid #4caf50;
+            border-left: 5px solid var(--success-color, #4caf50);
             margin-top: 1rem;
+            color: var(--text-color);
         }
         .header-image {
             text-align: center;
@@ -53,6 +60,10 @@ st.markdown("""
         .header-image img {
             width: 100px;
             height: auto;
+        }
+        /* Optional: info box styling */
+        .stInfo {
+            color: var(--text-color);
         }
     </style>
 """, unsafe_allow_html=True)
@@ -66,7 +77,7 @@ with col2:
     st.markdown("**Math Performance Predictor**")
 
 st.markdown("""
-    <div style="background-color: #e3f2fd; padding: 1rem; border-radius: 10px; margin-bottom: 2rem;">
+    <div style="background-color: var(--secondary-background-color); padding: 1rem; border-radius: 10px; margin-bottom: 2rem; color: var(--text-color);">
         Enter student details below to predict their math score. The model expects exact category strings 
         as provided in the dropdown menus.
     </div>
@@ -203,7 +214,7 @@ if submitted:
 # --- Footer ---
 st.markdown("---")
 st.markdown("""
-    <div style="text-align: center; color: #666; font-size: 0.9rem;">
+    <div style="text-align: center; color: var(--text-color); font-size: 0.9rem;">
         EduPredict Math Score Predictor • Powered by Streamlit • 
         <a href="https://github.com/gagannarang18/mlops-student-score-predictor" target="_blank">GitHub</a>
     </div>

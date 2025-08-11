@@ -1,4 +1,3 @@
-# app.py
 import streamlit as st
 from sec.pipeline.predict_pipeline import CustomData, PredictPipeline
 
@@ -10,88 +9,136 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- Theme-aware Custom CSS for Styling ---
+# --- Custom CSS for styling and alignment ---
 st.markdown("""
     <style>
-        /* Use Streamlit CSS variables to adapt light/dark mode */
+        /* Base styling and colors adapt to Streamlit themes */
         .main {
             background-color: var(--background-color);
             color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        /* Form container */
         .stForm {
             background-color: var(--secondary-background-color) !important;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
             color: var(--text-color) !important;
         }
-        .stButton>button {
-            background-color: var(--primary-color) !important;
-            color: var(--white, #fff) !important;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-        .stButton>button:hover {
-            filter: brightness(0.92);
-            transform: translateY(-2px);
-        }
+        /* Input styling */
         .stNumberInput input, .stSelectbox select {
             border-radius: 8px !important;
             color: var(--text-color) !important;
             background-color: var(--secondary-background-color) !important;
-            border: 1px solid rgba(128,128,128,0.15) !important;
+            border: 1.5px solid rgba(128,128,128,0.25) !important;
+            padding: 0.5rem 0.75rem !important;
+            font-size: 1rem !important;
+            transition: border-color 0.2s ease;
         }
-
-        /* Success prediction card - explicit colors and strong score styling */
-        .success-prediction {
-            font-size: 1.05rem !important;
-            text-align: center;
-            padding: 1.2rem 1.4rem;
-            background-color: var(--secondary-background-color) !important;
+        .stNumberInput input:focus, .stSelectbox select:focus {
+            border-color: var(--primary-color) !important;
+            outline: none !important;
+            box-shadow: 0 0 8px var(--primary-color);
+        }
+        /* Button styling */
+        .stButton>button {
+            background-color: var(--primary-color) !important;
+            color: var(--white, #fff) !important;
             border-radius: 10px;
-            border-left: 5px solid var(--primary-color);
-            margin-top: 1rem;
+            padding: 0.7rem 1.25rem;
+            width: 100%;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+        .stButton>button:hover {
+            filter: brightness(0.85);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+        }
+        /* Prediction result card with green highlight for light/dark modes */
+        .success-prediction {
+            font-size: 1.2rem !important;
+            text-align: center;
+            padding: 1.5rem 1.8rem;
+            background-color: rgba(56, 142, 60, 0.15) !important;  /* subtle green tint */
+            border-radius: 14px;
+            border-left: 6px solid #388e3c; /* green border */
+            margin-top: 1.6rem;
             color: var(--text-color) !important;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.6rem;
+            gap: 1rem;
+            font-weight: 600;
         }
         .success-prediction strong {
-            color: var(--primary-color) !important;
-            font-weight: 700;
-            font-size: 1.5rem;
+            color: #2e7d32 !important;  /* darker green */
+            font-weight: 800;
+            font-size: 1.8rem;
         }
-
+        /* Header image and title alignment */
         .header-image {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
         .header-image img {
-            width: 100px;
+            width: 90px;
             height: auto;
+            margin: 0 auto;
+            display: block;
         }
-        /* Optional: info box styling */
+        /* Header text */
+        .app-title {
+            font-weight: 700;
+            font-size: 2.4rem;
+            margin-bottom: 0.1rem;
+            color: var(--primary-color);
+        }
+        .app-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        /* Info box for performance interpretation */
         .stInfo {
+            font-size: 1.05rem !important;
+            font-weight: 600 !important;
+            margin-top: 1rem !important;
+            border-left: 5px solid var(--primary-color) !important;
+            padding-left: 1rem !important;
             color: var(--text-color) !important;
+            background-color: var(--secondary-background-color) !important;
+            border-radius: 8px;
+        }
+        /* Form section headers */
+        .section-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.25rem;
         }
     </style>
 """, unsafe_allow_html=True)
 
 # --- Header Section ---
-col1, col2 = st.columns([1, 4])
+col1, col2 = st.columns([1, 4], gap="small")
 with col1:
     st.image("https://cdn-icons-png.flaticon.com/512/2103/2103633.png", width=80)
 with col2:
-    st.title("EduPredict")
-    st.markdown("**Math Performance Predictor**")
+    st.markdown('<div class="app-title">EduPredict</div>', unsafe_allow_html=True)
+    st.markdown('<div class="app-subtitle">Math Performance Predictor</div>', unsafe_allow_html=True)
 
 st.markdown("""
-    <div style="background-color: var(--secondary-background-color); padding: 1rem; border-radius: 10px; margin-bottom: 2rem; color: var(--text-color);">
-        Enter student details below to predict their math score. The model expects exact category strings 
-        as provided in the dropdown menus.
+    <div style="background-color: var(--secondary-background-color); padding: 1.2rem 1.5rem; border-radius: 12px; margin-bottom: 2.5rem; color: var(--text-color); font-size: 1.05rem;">
+        Enter student details below to predict their math score with accuracy and insight.
     </div>
 """, unsafe_allow_html=True)
 
@@ -129,10 +176,10 @@ test_prep_map = {
     "Completed": "completed",
 }
 
-# --- Form UI (two-column feel) ---
+# --- Form UI (with neat two-column layout) ---
 with st.form("predict_form"):
-    st.subheader("📝 Student Information")
-    col1, col2 = st.columns(2)
+    st.markdown('<div class="section-header">📝 Student Information</div>', unsafe_allow_html=True)
+    col1, col2 = st.columns(2, gap="medium")
 
     with col1:
         st.markdown("**Personal Details**")
@@ -144,25 +191,22 @@ with st.form("predict_form"):
         st.markdown("**Academic Details**")
         lunch_label = st.selectbox("Lunch Program", list(lunch_map.keys()))
         test_prep_label = st.selectbox("Test Preparation", list(test_prep_map.keys()))
-        writing_score = st.number_input("Writing Score (0–100)", min_value=0.0, max_value=100.0, value=70.0, step=1.0)
-        reading_score = st.number_input("Reading Score (0–100)", min_value=0.0, max_value=100.0, value=70.0, step=1.0)
+        writing_score = st.number_input("Writing Score (0–100)", min_value=0.0, max_value=100.0, value=70.0, step=1.0, format="%.0f")
+        reading_score = st.number_input("Reading Score (0–100)", min_value=0.0, max_value=100.0, value=70.0, step=1.0, format="%.0f")
 
     submitted = st.form_submit_button("🔮 Predict Math Score")
 
 if submitted:
-    # map displayed labels to the exact values expected by the pipeline
     gender = gender_map[gender_label]
     race_ethnicity = ethnicity_map[ethnicity_label]
     parental_level_of_education = parental_education_map[parental_label]
     lunch = lunch_map[lunch_label]
     test_preparation_course = test_prep_map[test_prep_label]
 
-    # Basic sanity check
     if not (0 <= writing_score <= 100 and 0 <= reading_score <= 100):
         st.error("❌ Scores must be between 0 and 100.")
     else:
         try:
-            # Build input object exactly as your Flask app did
             data = CustomData(
                 gender=gender,
                 race_ethnicity=race_ethnicity,
@@ -175,42 +219,35 @@ if submitted:
             pred_df = data.get_data_as_data_frame()
 
             predict_pipeline = PredictPipeline()
-            
-            # Add a spinner for better UX
             with st.spinner('🔍 Analyzing student data...'):
                 results = predict_pipeline.predict(pred_df)
-                
-                st.markdown(f"""
-                    <div class="success-prediction">
-                        🎯 Predicted Math Score: <strong>{results[0]:.1f} / 100</strong>
-                    </div>
-                """, unsafe_allow_html=True)
-                
-                # Performance interpretation
-                performance = ""
-                if results[0] >= 85:
-                    performance = "🌟 Excellent performance!"
-                elif results[0] >= 70:
-                    performance = "👍 Good performance"
-                elif results[0] >= 50:
-                    performance = "📈 Average performance - room for improvement"
-                else:
-                    performance = "⚠️ Below average - consider additional support"
-                
-                st.info(f"**Performance Interpretation:** {performance}")
 
-                # optional: show raw output for debugging
-                with st.expander("📊 Show prediction details"):
-                    st.write("Model Input Data:", pred_df)
-                    st.write("Raw Prediction Output:", results)
+            st.markdown(f"""
+                <div class="success-prediction">
+                    🎯 Predicted Math Score: <strong>{results[0]:.1f} / 100</strong>
+                </div>
+            """, unsafe_allow_html=True)
+
+            performance = ""
+            if results[0] >= 85:
+                performance = "🌟 Excellent performance!"
+            elif results[0] >= 70:
+                performance = "👍 Good performance"
+            elif results[0] >= 50:
+                performance = "📈 Average performance - room for improvement"
+            else:
+                performance = "⚠️ Below average - consider additional support"
+
+            st.info(f"**Performance Interpretation:** {performance}")
+
+            with st.expander("📊 Show prediction details"):
+                st.write("Model Input Data:", pred_df)
+                st.write("Raw Prediction Output:", results)
 
         except Exception as e:
-            # If something goes wrong, try to surface helpful info
             err_str = str(e)
             st.error("❌ An error occurred during prediction.")
             st.write("**Error message:**", err_str)
-
-            # If it's the common unknown-category message, show guidance
             if "Found unknown categories" in err_str or "unknown categories" in err_str:
                 st.markdown(
                     """
@@ -226,8 +263,10 @@ if submitted:
 # --- Footer ---
 st.markdown("---")
 st.markdown("""
-    <div style="text-align: center; color: var(--text-color); font-size: 0.9rem;">
+    <div style="text-align: center; color: var(--text-color); font-size: 0.9rem; margin-top: 1rem;">
         EduPredict Math Score Predictor • Powered by Streamlit • 
-        <a href="https://github.com/gagannarang18/mlops-student-score-predictor" target="_blank">GitHub</a>
+        <a href="https://github.com/gagannarang18/mlops-student-score-predictor" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">
+            GitHub
+        </a>
     </div>
 """, unsafe_allow_html=True)

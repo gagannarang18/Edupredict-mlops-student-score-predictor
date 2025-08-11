@@ -1,5 +1,5 @@
 import streamlit as st
-from sec.pipeline.predict_pipeline import CustomData, PredictPipeline
+from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
 # --- Page Configuration ---
 st.set_page_config(

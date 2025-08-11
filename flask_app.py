@@ -3,7 +3,7 @@ from flask import Flask, request, render_template, flash, redirect, url_for
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from sec.pipeline.predict_pipeline import CustomData, PredictPipeline
+from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
 application = Flask(__name__)
 app = application

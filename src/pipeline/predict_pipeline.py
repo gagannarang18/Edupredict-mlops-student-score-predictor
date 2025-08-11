@@ -1,7 +1,7 @@
 import sys
 import pandas as pd
-from sec.exception import CustomException
-from sec.utils import load_object
+from src.exception import CustomException
+from src.utils import load_object
 import os
 
 

@@ -19,40 +19,51 @@ st.markdown("""
             color: var(--text-color);
         }
         .stForm {
-            background-color: var(--secondary-background-color);
+            background-color: var(--secondary-background-color) !important;
             border-radius: 10px;
             padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            color: var(--text-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+            color: var(--text-color) !important;
         }
         .stButton>button {
-            background-color: var(--primary-color);
-            color: var(--white, #fff);
+            background-color: var(--primary-color) !important;
+            color: var(--white, #fff) !important;
             border-radius: 8px;
             padding: 0.5rem 1rem;
             width: 100%;
             transition: all 0.3s ease;
         }
         .stButton>button:hover {
-            filter: brightness(0.9);
+            filter: brightness(0.92);
             transform: translateY(-2px);
         }
         .stNumberInput input, .stSelectbox select {
             border-radius: 8px !important;
-            color: var(--text-color);
-            background-color: var(--secondary-background-color);
-            border: 1px solid var(--gray-300, #ccc);
+            color: var(--text-color) !important;
+            background-color: var(--secondary-background-color) !important;
+            border: 1px solid rgba(128,128,128,0.15) !important;
         }
+
+        /* Success prediction card - explicit colors and strong score styling */
         .success-prediction {
-    font-size: 1.5rem !important;
-    text-align: center;
-    padding: 1.5rem;
-    background-color: var(--success-background, #e8f5e9);
-    border-radius: 10px;
-    border-left: 5px solid var(--success-color, #4caf50);
-    margin-top: 1rem;
-    color: var(--text-color);  /* <-- add this line to fix text color */
-}
+            font-size: 1.05rem !important;
+            text-align: center;
+            padding: 1.2rem 1.4rem;
+            background-color: var(--secondary-background-color) !important;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            margin-top: 1rem;
+            color: var(--text-color) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+        .success-prediction strong {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
 
         .header-image {
             text-align: center;
@@ -64,7 +75,7 @@ st.markdown("""
         }
         /* Optional: info box styling */
         .stInfo {
-            color: var(--text-color);
+            color: var(--text-color) !important;
         }
     </style>
 """, unsafe_allow_html=True)
